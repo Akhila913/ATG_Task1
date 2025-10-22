@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Hospital Portal</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="login-wrapper">
+        <!-- Left side illustration -->
+        <div class="login-left">
+            <img src="{% static 'images/hospital_animation.gif' %}" alt="Hospital Illustration" class="illustration">
+        </div>
+
+        <!-- Right side login form -->
+        <div class="login-right">
+            <div class="form-container">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Login to continue</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="login-btn">Log In</button>
+                </form>
+                <p class="signup-text">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+                <a href="{% url 'password_reset' %}" class="forgot-link">Forgot Username/Password?</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

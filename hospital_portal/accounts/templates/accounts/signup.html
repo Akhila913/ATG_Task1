@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up | Hospital Portal</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="auth-page">
+    <div class="form-wrapper">
+        <h2 class="form-title">Create Your Account</h2>
+
+        <!-- Display messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" class="signup-form">
+            {% csrf_token %}
+
+            <!-- Non-field errors -->
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <!-- First and Last Name -->
+            <div class="row two-cols">
+                <div class="col">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </div>
+                <div class="col">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </div>
+            </div>
+
+            <!-- Username -->
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.username.errors }}
+
+            <!-- Email -->
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+
+            <!-- User Type -->
+            {{ form.user_type.label_tag }}
+            {{ form.user_type }}
+            {{ form.user_type.errors }}
+
+            <!-- Profile Picture -->
+            {{ form.profile_picture.label_tag }}
+            {{ form.profile_picture }}
+            {{ form.profile_picture.errors }}
+
+            <!-- Password and Confirm Password -->
+            <div class="row two-cols">
+                <div class="col">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    {{ form.password1.errors }}
+                </div>
+                <div class="col">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    {{ form.password2.errors }}
+                </div>
+            </div>
+
+            <!-- Address Section -->
+            {{ form.address_line1.label_tag }}
+            {{ form.address_line1 }}
+            {{ form.address_line1.errors }}
+
+            {{ form.address_line2.label_tag }}
+            {{ form.address_line2 }}
+            {{ form.address_line2.errors }}
+
+            <div class="row three-cols">
+                <div class="col">
+                    {{ form.city.label_tag }}
+                    {{ form.city }}
+                    {{ form.city.errors }}
+                </div>
+                <div class="col">
+                    {{ form.state.label_tag }}
+                    {{ form.state }}
+                    {{ form.state.errors }}
+                </div>
+                <div class="col">
+                    {{ form.pincode.label_tag }}
+                    {{ form.pincode }}
+                    {{ form.pincode.errors }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+
+            <p class="bottom-text">
+                Already have an account? <a href="{% url 'login' %}">Login here</a>
+            </p>
+        </form>
+    </div>
+</body>
+</html>
